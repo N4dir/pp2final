@@ -277,10 +277,10 @@ def game_online():
     client = TankRPC()
 
     client.server_check()
-    client.register('room-25')
+    client.register('room-1')
     
 
-    event_collect = ConsumeDataTanks('room-25')
+    event_collect = ConsumeDataTanks('room-1')
 
     event_collect.start()
     
@@ -326,6 +326,7 @@ def game_online():
     TANKS = {}
 
     hp = 3
+    ochko = 0
 
     is_game = True
     remain = True
@@ -398,11 +399,14 @@ def game_online():
                 if not TANKS.get(tank['id']):
                     TANKS[tank['id']] = rand_color()
         
+        tank_num = 0
+
         for tank in tanks:
             
             if client.tankid == tank['id']:
                 draw_tanks(tank['x'], tank['y'], tank['width'],tank['height'], tank['direction'], (35,187,17))
             else:
+                tank_num += 1
                 draw_tanks(tank['x'], tank['y'], tank['width'],tank['height'], tank['direction'], TANKS[tank['id']])
             
             
@@ -423,6 +427,7 @@ def game_online():
         for tank in tanks:
             if client.tankid == tank['id']:                
                 blit_text(tank['id'] + "           " + str(tank['health']) + "               " + str(tank['score']), 940,50,17, (35,187,17))
+                ochko = tank['score']
             else:
                 blit_text(tank['id'] + "             " + str(tank['health']) + "                 " + str(tank['score']), 950,100 + (20 * t),17, TANKS[tank['id']])
                 t += 1
@@ -430,6 +435,11 @@ def game_online():
                     t = 0
                     f = g
                 f -= 1
+
+        if tank_num + 1 != len(tanks):
+            is_game = False
+            smert.smert2 = True
+            smert.score = ochko
 
         for bullet in bullets:
             if client.tankid == bullet['owner']:
