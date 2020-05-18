@@ -263,10 +263,10 @@ def game_online_ai():
     client = TankRPC()
 
     client.server_check()
-    client.register('room-25')
+    client.register('room-1')
     
 
-    event_collect = ConsumeDataTanks('room-25')
+    event_collect = ConsumeDataTanks('room-1')
 
     event_collect.start()
     client.povorot(client.token, 'UP')
@@ -322,6 +322,7 @@ def game_online_ai():
     my_width = 31
     my_direction = ''
     time_afk = 120
+    ochko = 0
 
     hp = 3
 
@@ -552,6 +553,7 @@ def game_online_ai():
         for tank in tanks:
             if client.tankid == tank['id']:                
                 blit_text(tank['id'] + "           " + str(tank['health']) + "               " + str(tank['score']), 940,50,17, (35,187,17))
+                ochko = tank['score']
             else:
                 blit_text(tank['id'] + "             " + str(tank['health']) + "                 " + str(tank['score']), 950,100 + (20 * t),17, TANKS[tank['id']])
                 t += 1
@@ -560,9 +562,10 @@ def game_online_ai():
                     f = g
                 f -= 1
             
-            if tank_num + 1 != len(tanks):
-                is_game = False
-                smert.smert2 = True
+        if tank_num + 1 != len(tanks):
+            is_game = False
+            smert.smert2 = True
+            smert.score = ochko
 
         for bullet in bullets:
             if client.tankid == bullet['owner']:
