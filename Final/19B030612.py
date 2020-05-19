@@ -1331,145 +1331,158 @@ def game_online_ai():
 
         for bullet in BULLETS_X:
             if abs(int(BULLETS_X[bullet] - my_x)) <= 31:
-                if BULLETS_DIR[bullet] == 'UP' and my_direction == 'UP':
-                    client.povorot(client.token, 'RIGHT')
-                    time_afk = rem_time
-                if BULLETS_DIR[bullet] == 'UP' and my_direction == 'DOWN':
-                    client.povorot(client.token, 'LEFT')
-                    time_afk = rem_time
                 if BULLETS_DIR[bullet] == 'DOWN' and my_direction == 'DOWN':
                     client.povorot(client.token, 'LEFT')
                     time_afk = rem_time
                 if BULLETS_DIR[bullet] == 'DOWN' and my_direction == 'UP':
                     client.povorot(client.token, 'RIGHT')
                     time_afk = rem_time
-                
-            if my_direction == 'UP' and BULLETS_DIR[bullet] == 'LEFT':
-                if abs(abs(BULLETS_X[bullet] - my_x) - abs(BULLETS_Y[bullet] - my_y) // 2.5) <= 12:
+                if BULLETS_DIR[bullet] == 'UP' and my_direction == 'UP':
                     client.povorot(client.token, 'RIGHT')
-            if my_direction == 'UP' and BULLETS_DIR[bullet] == 'RIGHT':
-                if abs(abs(BULLETS_X[bullet] - my_x) - abs(BULLETS_Y[bullet] - my_y) // 2.5) <= 12:
+                    time_afk = rem_time
+                if BULLETS_DIR[bullet] == 'UP' and my_direction == 'DOWN':
                     client.povorot(client.token, 'LEFT')
+                    time_afk = rem_time
+                
+            
             if my_direction == 'DOWN' and BULLETS_DIR[bullet] == 'LEFT':
                 if abs(abs(BULLETS_X[bullet] - my_x) - abs(BULLETS_Y[bullet] - my_y) // 2.5) <= 12:
                     client.povorot(client.token, 'RIGHT')
             if my_direction == 'DOWN' and BULLETS_DIR[bullet] == 'RIGHT':
                 if abs(abs(BULLETS_X[bullet] - my_x) - abs(BULLETS_Y[bullet] - my_y) // 2.5) <= 12:
                     client.povorot(client.token, 'RIGHT')
+            if my_direction == 'UP' and BULLETS_DIR[bullet] == 'LEFT':
+                if abs(abs(BULLETS_X[bullet] - my_x) - abs(BULLETS_Y[bullet] - my_y) // 2.5) <= 12:
+                    client.povorot(client.token, 'RIGHT')
+            if my_direction == 'UP' and BULLETS_DIR[bullet] == 'RIGHT':
+                if abs(abs(BULLETS_X[bullet] - my_x) - abs(BULLETS_Y[bullet] - my_y) // 2.5) <= 12:
+                    client.povorot(client.token, 'LEFT')
 
 
         for bullet in BULLETS_Y:
             if abs(int(BULLETS_Y[bullet] - my_y)) <= 31:
-                if BULLETS_DIR[bullet] == 'RIGHT' and my_direction == 'RIGHT':
-                    client.povorot(client.token, 'DOWN')
-                    time_afk = rem_time
-                if BULLETS_DIR[bullet] == 'RIGHT' and my_direction == 'LEFT':
-                    client.povorot(client.token, 'UP')
-                    time_afk = rem_time
                 if BULLETS_DIR[bullet] == 'LEFT' and my_direction == 'LEFT':
                     client.povorot(client.token, 'UP')
                     time_afk = rem_time
                 if BULLETS_DIR[bullet] == 'LEFT' and my_direction == 'RIGHT':
                     client.povorot(client.token, 'DOWN')
                     time_afk = rem_time
-            
-            if my_direction == 'RIGHT' and BULLETS_DIR[bullet] == 'UP':
-                if abs(abs(BULLETS_Y[bullet] - my_y) - abs(BULLETS_X[bullet] - my_x) // 2.5) <= 12:
+                if BULLETS_DIR[bullet] == 'RIGHT' and my_direction == 'RIGHT':
                     client.povorot(client.token, 'DOWN')
-            if my_direction == 'RIGHT' and BULLETS_DIR[bullet] == 'DOWN':
-                if abs(abs(BULLETS_Y[bullet] - my_y) - abs(BULLETS_X[bullet] - my_x) // 2.5) <= 12:
+                    time_afk = rem_time
+                if BULLETS_DIR[bullet] == 'RIGHT' and my_direction == 'LEFT':
                     client.povorot(client.token, 'UP')
+                    time_afk = rem_time
+            
             if my_direction == 'LEFT' and BULLETS_DIR[bullet] == 'UP':
                 if abs(abs(BULLETS_Y[bullet] - my_y) - abs(BULLETS_X[bullet] - my_x) // 2.5) <= 12:
                     client.povorot(client.token, 'DOWN')
             if my_direction == 'LEFT' and BULLETS_DIR[bullet] == 'DOWN':
                 if abs(abs(BULLETS_Y[bullet] - my_y) - abs(BULLETS_X[bullet] - my_x) // 2.5) <= 12:
                     client.povorot(client.token, 'UP')
+            if my_direction == 'RIGHT' and BULLETS_DIR[bullet] == 'UP':
+                if abs(abs(BULLETS_Y[bullet] - my_y) - abs(BULLETS_X[bullet] - my_x) // 2.5) <= 12:
+                    client.povorot(client.token, 'DOWN')
+            if my_direction == 'RIGHT' and BULLETS_DIR[bullet] == 'DOWN':
+                if abs(abs(BULLETS_Y[bullet] - my_y) - abs(BULLETS_X[bullet] - my_x) // 2.5) <= 12:
+                    client.povorot(client.token, 'UP')
 
         for tank in TANKS_X:
-            if my_direction == "UP" and TANKS_DIR[tank] == "RIGHT":
-                if abs(abs(TANKS_X[tank] - my_x) - abs(TANKS_Y[tank] - my_y) // 2.5) <= 12:
-                    client.vistrel(client.token)
-                    time_afk = rem_time
-            if my_direction == "UP" and TANKS_DIR[tank] == "LEFT":
-                if abs(abs(TANKS_X[tank] - my_x) - abs(TANKS_Y[tank] - my_y) // 2.5) <= 12:
-                    client.vistrel(client.token)
-                    time_afk = rem_time
-            
             if my_direction == "DOWN" and TANKS_DIR[tank] == "RIGHT":
                 if abs(abs(TANKS_X[tank] - my_x) - abs(TANKS_Y[tank] - my_y) // 2.5) <= 12:
+                    self_shot.play()
                     client.vistrel(client.token)
                     time_afk = rem_time
             if my_direction == "DOWN" and TANKS_DIR[tank] == "LEFT":
                 if abs(abs(TANKS_X[tank] - my_x) - abs(TANKS_Y[tank] - my_y) // 2.5) <= 12:
+                    self_shot.play()
+                    client.vistrel(client.token)
+                    time_afk = rem_time
+            
+            if my_direction == "UP" and TANKS_DIR[tank] == "RIGHT":
+                if abs(abs(TANKS_X[tank] - my_x) - abs(TANKS_Y[tank] - my_y) // 2.5) <= 12:
+                    self_shot.play()
+                    client.vistrel(client.token)
+                    time_afk = rem_time
+            if my_direction == "UP" and TANKS_DIR[tank] == "LEFT":
+                if abs(abs(TANKS_X[tank] - my_x) - abs(TANKS_Y[tank] - my_y) // 2.5) <= 12:
+                    self_shot.play()
+                    client.vistrel(client.token)
+                    time_afk = rem_time
+            
+            if my_direction == "LEFT" and TANKS_DIR[tank] == "UP":
+                if abs(abs(TANKS_Y[tank] - my_y) - abs(TANKS_X[tank] - my_x) // 2.5) <= 12:
+                    self_shot.play()
+                    client.vistrel(client.token)
+                    time_afk = rem_time
+            if my_direction == "LEFT" and TANKS_DIR[tank] == "DOWN":
+                if abs(abs(TANKS_Y[tank] - my_y) - abs(TANKS_X[tank] - my_x) // 2.5) <= 12:
+                    self_shot.play()
                     client.vistrel(client.token)
                     time_afk = rem_time
             
             if my_direction == "RIGHT" and TANKS_DIR[tank] == "UP":
                 if abs(abs(TANKS_Y[tank] - my_y) - abs(TANKS_X[tank] - my_x) // 2.5) <= 12:
+                    self_shot.play()
                     client.vistrel(client.token)
                     time_afk = rem_time
             if my_direction == "RIGHT" and TANKS_DIR[tank] == "DOWN":
                 if abs(abs(TANKS_Y[tank] - my_y) - abs(TANKS_X[tank] - my_x) // 2.5) <= 12:
-                    client.vistrel(client.token)
-                    time_afk = rem_time
-
-            if my_direction == "LEFT" and TANKS_DIR[tank] == "UP":
-                if abs(abs(TANKS_Y[tank] - my_y) - abs(TANKS_X[tank] - my_x) // 2.5) <= 12:
-                    client.vistrel(client.token)
-                    time_afk = rem_time
-            if my_direction == "LEFT" and TANKS_DIR[tank] == "DOWN":
-                if abs(abs(TANKS_Y[tank] - my_y) - abs(TANKS_X[tank] - my_x) // 2.5) <= 12:
+                    self_shot.play()
                     client.vistrel(client.token)
                     time_afk = rem_time
             
-            if my_direction == 'UP' and TANKS_DIR[tank] == 'UP':
+            if my_direction == 'DOWN' and TANKS_DIR[tank] == 'DOWN':
                 if abs(TANKS_X[tank] - my_x) <= 31:
+                    self_shot.play()
                     client.vistrel(client.token)
                     time_afk = rem_time
 
-            if my_direction == 'DOWN' and TANKS_DIR[tank] == 'DOWN':
+            if my_direction == 'UP' and TANKS_DIR[tank] == 'UP':
                 if abs(TANKS_X[tank] - my_x) <= 31:
+                    self_shot.play()
+                    client.vistrel(client.token)
+                    time_afk = rem_time
+
+            if my_direction == 'LEFT' and TANKS_DIR[tank] == 'LEFT':
+                if abs(TANKS_Y[tank] - my_y) <= 31:
+                    self_shot.play()
                     client.vistrel(client.token)
                     time_afk = rem_time
 
             if my_direction == 'RIGHT' and TANKS_DIR[tank] == 'RIGHT':
                 if abs(TANKS_Y[tank] - my_y) <= 31:
+                    self_shot.play()
                     client.vistrel(client.token)
-                    time_afk = rem_time
-                
-            if my_direction == 'LEFT' and TANKS_DIR[tank] == 'LEFT':
-                if abs(TANKS_Y[tank] - my_y) <= 31:
-                    client.vistrel(client.token)
-                    time_afk = rem_time
-
-        if abs(time_afk - rem_time) >= 25:
-            client.povorot(client.token, my_direction)
-            time_afk = rem_time
+                    time_afk = rem_time    
 
         for winner in winners:
             if client.tankid == winner['tankId']:
                 pobeda_ai.vigral = True
                 is_game = False
-                pobeda_ai.score = winner['score']
                 mixer.music.stop()
                 self_win_ai.play()
+                pobeda_ai.score = winner['score']
     
         for loser in losers:
             if client.tankid == loser['tankId']:
                 smert_ai.death = True
                 is_game = False
-                smert_ai.score = loser['score']
                 mixer.music.stop()
                 self_dead_ai.play()
+                smert_ai.score = loser['score']
 
         for kicker in kickers:
             if client.tankid == kicker['tankId']:
                 kicked_ai.kicket = True
                 is_game = False
-                kicked_ai.score = kicker['score']
                 mixer.music.stop() 
                 self_kicked_ai.play()
+                kicked_ai.score = kicker['score']
+
+        if abs(time_afk - rem_time) >= 25:
+            client.povorot(client.token, my_direction)
+            time_afk = rem_time
 
         if rem_time == 10 and remain:
             out_of_time.play()
